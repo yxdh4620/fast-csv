@@ -257,7 +257,7 @@ td.cov-stats {
             <td class="cov-stats">
                 <div>
                     <span class='cov-label'>Coverage</span><span class='cov-value'>98.82</span>
-                    <span class='cov-label'>SLOC</span><span class='cov-value'>161</span>
+                    <span class='cov-label'>SLOC</span><span class='cov-value'>279</span>
                     <span class='cov-label'>LOC</span><span class='cov-value'>85</span>
                     <span class='cov-label'>Missed</span><span class='cov-value'>1</span>
                 </div>
@@ -276,14 +276,135 @@ td.cov-stats {
             <td class="cov-stats">
                 <div>
                     <span class='cov-label'>Coverage</span><span class='cov-value'>98.82</span>
-                    <span class='cov-label'>SLOC</span><span class='cov-value'>161</span>
+                    <span class='cov-label'>SLOC</span><span class='cov-value'>279</span>
                     <span class='cov-label'>LOC</span><span class='cov-value'>85</span>
                     <span class='cov-label'>Missed</span><span class='cov-value'>1</span>
                 </div>
             </td>
         </tr>
     </table>
-    <div class='source' id="index.js-source"><pre class='prettyprint linenums'><ol class='linenums'><li class='green'><span class='hits'>1</span><code>var fs = require("fs"),</code></li>
+    <div class='source' id="index.js-source"><pre class='prettyprint linenums'><ol class='linenums'><li class='green'><span class=''> </span><code>/**</code></li>
+<li class='green'><span class=''> </span><code> * @projectName fast-csv</code></li>
+<li class='green'><span class=''> </span><code> * @github https://github.com/C2FO/fast-csv</code></li>
+<li class='green'><span class=''> </span><code> * @includeDoc [Test Coverage] [../docs-md/coverage.html]</code></li>
+<li class='green'><span class=''> </span><code> * @header</code></li>
+<li class='green'><span class=''> </span><code> * This is a library is aimed at providing fast CSV parsing. It accomplishes this by not handling some of the more complex</code></li>
+<li class='green'><span class=''> </span><code> * edge cases such as multi line rows. However it does support escaped values, embedded commas, double and single quotes.</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * To parse a file.</code></li>
+<li class='green'><span class=''> </span><code> * ```</code></li>
+<li class='green'><span class=''> </span><code> * var csv = require("fast-csv");</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * csv("my.csv")</code></li>
+<li class='green'><span class=''> </span><code> *  .on("data", function(data){</code></li>
+<li class='green'><span class=''> </span><code> *      console.log(data):</code></li>
+<li class='green'><span class=''> </span><code> *  })</code></li>
+<li class='green'><span class=''> </span><code> *  .on("end", function(){</code></li>
+<li class='green'><span class=''> </span><code> *      console.log("done");</code></li>
+<li class='green'><span class=''> </span><code> *  })</code></li>
+<li class='green'><span class=''> </span><code> *  .parse();</code></li>
+<li class='green'><span class=''> </span><code> * ```</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * You may also parse a stream.</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * ```</code></li>
+<li class='green'><span class=''> </span><code> * var stream = fs.createReadStream("my.csv");</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * csv(stream)</code></li>
+<li class='green'><span class=''> </span><code> *  .on("data", function(data){</code></li>
+<li class='green'><span class=''> </span><code> *      console.log(data):</code></li>
+<li class='green'><span class=''> </span><code> *  })</code></li>
+<li class='green'><span class=''> </span><code> *  .on("end", function(){</code></li>
+<li class='green'><span class=''> </span><code> *      console.log("done");</code></li>
+<li class='green'><span class=''> </span><code> *  })</code></li>
+<li class='green'><span class=''> </span><code> *  .parse();</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * ```</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * If you expect the first line your csv to headers you may pass a headers option in. Setting the headers option will</code></li>
+<li class='green'><span class=''> </span><code> * cause change each row to an object rather than an array.</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * ```</code></li>
+<li class='green'><span class=''> </span><code> * var stream = fs.createReadStream("my.csv");</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * csv(stream, {headers : true})</code></li>
+<li class='green'><span class=''> </span><code> *  .on("data", function(data){</code></li>
+<li class='green'><span class=''> </span><code> *      console.log(data):</code></li>
+<li class='green'><span class=''> </span><code> *  })</code></li>
+<li class='green'><span class=''> </span><code> *  .on("end", function(){</code></li>
+<li class='green'><span class=''> </span><code> *      console.log("done");</code></li>
+<li class='green'><span class=''> </span><code> *  })</code></li>
+<li class='green'><span class=''> </span><code> *  .parse();</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * ```</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * You may alternatively pass an array of header names which must match the order of each column in the csv, otherwise</code></li>
+<li class='green'><span class=''> </span><code> * the data columns will not match.</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * ```</code></li>
+<li class='green'><span class=''> </span><code> * var stream = fs.createReadStream("my.csv");</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * csv(stream, {headers : ["firstName", "lastName", "address"]})</code></li>
+<li class='green'><span class=''> </span><code> *  .on("data", function(data){</code></li>
+<li class='green'><span class=''> </span><code> *      console.log(data):</code></li>
+<li class='green'><span class=''> </span><code> *  })</code></li>
+<li class='green'><span class=''> </span><code> *  .on("end", function(){</code></li>
+<li class='green'><span class=''> </span><code> *      console.log("done");</code></li>
+<li class='green'><span class=''> </span><code> *  })</code></li>
+<li class='green'><span class=''> </span><code> *  .parse();</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * ```</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * ###Validating</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * You can validate each row in the csv by providing a validate handler. If a row is invalid then a `data-invalid` event</code></li>
+<li class='green'><span class=''> </span><code> * will be emitted with the row and the index.</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * ```</code></li>
+<li class='green'><span class=''> </span><code> * var stream = fs.createReadStream("my.csv");</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * csv(stream, {headers : true})</code></li>
+<li class='green'><span class=''> </span><code> *  .validate(function(data){</code></li>
+<li class='green'><span class=''> </span><code> *      return data.age &lt; 50; //all persons must be under the age of 50</code></li>
+<li class='green'><span class=''> </span><code> *  })</code></li>
+<li class='green'><span class=''> </span><code> *  .on("data-invalid", function(data){</code></li>
+<li class='green'><span class=''> </span><code> *      //do something with invalid row</code></li>
+<li class='green'><span class=''> </span><code> *  })</code></li>
+<li class='green'><span class=''> </span><code> *  .on("data", function(data){</code></li>
+<li class='green'><span class=''> </span><code> *      console.log(data):</code></li>
+<li class='green'><span class=''> </span><code> *  })</code></li>
+<li class='green'><span class=''> </span><code> *  .on("end", function(){</code></li>
+<li class='green'><span class=''> </span><code> *      console.log("done");</code></li>
+<li class='green'><span class=''> </span><code> *  })</code></li>
+<li class='green'><span class=''> </span><code> *  .parse();</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * ```</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * ###Transforming</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * You can transform data by providing in a transform function. What is returned from the transform function will</code></li>
+<li class='green'><span class=''> </span><code> * be provided to validate and emitted as a row.</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * ```</code></li>
+<li class='green'><span class=''> </span><code> * var stream = fs.createReadStream("my.csv");</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * csv(stream)</code></li>
+<li class='green'><span class=''> </span><code> *  .transform(function(data){</code></li>
+<li class='green'><span class=''> </span><code> *      return data.reverse(); //reverse each row.</code></li>
+<li class='green'><span class=''> </span><code> *  })</code></li>
+<li class='green'><span class=''> </span><code> *  .on("data", function(data){</code></li>
+<li class='green'><span class=''> </span><code> *      console.log(data):</code></li>
+<li class='green'><span class=''> </span><code> *  })</code></li>
+<li class='green'><span class=''> </span><code> *  .on("end", function(){</code></li>
+<li class='green'><span class=''> </span><code> *      console.log("done");</code></li>
+<li class='green'><span class=''> </span><code> *  })</code></li>
+<li class='green'><span class=''> </span><code> *  .parse();</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * ```</code></li>
+<li class='green'><span class=''> </span><code> * @type {*}</code></li>
+<li class='green'><span class=''> </span><code> */</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>1</span><code>var fs = require("fs"),</code></li>
 <li class='green'><span class=''> </span><code>    comb = require("comb"),</code></li>
 <li class='green'><span class=''> </span><code>    EventEmitter = require("events").EventEmitter,</code></li>
 <li class='green'><span class=''> </span><code>    Promise = comb.Promise,</code></li>
@@ -427,14 +548,11 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>});</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
+<li class='green'><span class=''> </span><code> * Entry point to `fast-csv`. `fast-csv` does not store rows its proccesses each row and emits it. If you wish to save</code></li>
+<li class='green'><span class=''> </span><code> * every row into an array you must store them yourself by using the `data` event. Once all rows are done processing</code></li>
+<li class='green'><span class=''> </span><code> * the `end` event is emitted.</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
 <li class='green'><span class=''> </span><code> * Invoke to parse a csv file.</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> * To parse a file.</code></li>
-<li class='green'><span class=''> </span><code> * ```</code></li>
-<li class='green'><span class=''> </span><code> * var csv = require("fast-csv");</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> * ```</code></li>
 <li class='green'><span class=''> </span><code> *</code></li>
 <li class='green'><span class=''> </span><code> * @name fast-csv</code></li>
 <li class='green'><span class=''> </span><code> * @param location</code></li>
