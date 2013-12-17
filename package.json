@@ -1,6 +1,6 @@
 {
     "name": "fast-csv",
-    "version": "0.0.2",
+    "version": "0.0.212",
     "description": "CSV parser for node.js",
     "main": "index.js",
     "scripts": {
@@ -8,15 +8,15 @@
     },
     "repository": {
         "type": "git",
-        "url": "git@github.com:C2FO/fast-csv.git"
+        "url": "git@github.com:yxdh4620/fast-csv.git"
     },
     "keywords": [
         "csv",
         "parser",
         "fast"
     ],
-    "homepage": "http://c2fo.github.com/fast-csv/index.html",
-    "author": "Doug Martin",
+    "homepage": "https://github.com/yxdh4620/fast-csv/wiki",
+    "author": "Doug Martin - delims forked by fluffy bunnies - yxdh4620 'utf8'",
     "license": "MIT",
     "devDependencies": {
         "it": "~0.2.6",
